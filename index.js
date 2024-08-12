@@ -11,6 +11,7 @@ const corsConfig = {
 	method : ["GET", "POST", "PUT", "DELETE"],
 };
 const home = require("./routes/home");
+const fs = require('fs');
 
 // Middlewares
 //const app = express();
@@ -25,7 +26,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsConfig));
 
 app.get("/", (req, res) => {
-res.render("index");
+res.setHeader('Content-Type','text/html');
+fs.readFile('./views/index.html',(err,data) => {
+	if (err) {
+		console.log(err);
+		res.end();
+	} else {
+		res.write(data);
+		res.end();
+	}
+});
+
 });
 
 // connection
