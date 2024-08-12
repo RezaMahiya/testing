@@ -36,8 +36,12 @@ app.post("/", async (req, res) => {
 
   const now = new Date();
   let tanggal = date.format(now, 'DD/MM/YYYY');
-  let waktu = date.format(now,'HH:mm:ss');
-     
+
+  const jam = new Date();
+  let gmt = date.addHours(jam, +8);
+  let waktu = date.format(gmt,'HH:mm:ss');
+  
+
   const credentialsEnv = process.env.GOOGLE_CREDENTIALS;
   const credentials = JSON.parse(credentialsEnv);
 
