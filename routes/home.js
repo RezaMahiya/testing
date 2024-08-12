@@ -3,13 +3,19 @@ const router = express.Router();
 const app = express();
 const { google } = require("googleapis");
 const date = require('date-and-time');
-
+const fs = require('fs');
 
 router.get("/", async (req, res, next) => {
-  return res.status(200).json({
-    title: "Express Testing",
-    message: "The app is working properly!",
-  });
+  res.setHeader('Content-Type','text/html');
+  fs.readFile('./views/index.html',(err,data) => {
+  if (err) {
+    console.log(err);
+    res.end();
+  } else {
+    res.write(data);
+    res.end();
+  }
+});
 });
 
 
