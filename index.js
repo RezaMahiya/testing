@@ -27,21 +27,11 @@ app.options("", cors(corsConfig));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsConfig));
-
-app.get("/", (req, res) => {
-res.setHeader('Content-Type','text/html');
-fs.readFile('./views/index.html',(err,data) => {
-	if (err) {
-		console.log(err);
-		res.end();
-	} else {
-		res.write(data);
-		res.end();
-	}
-});
-
-});
 */
+app.get("/", (req, res) => {
+res.sendFile('./views/index.html',{root: __dirname});
+});
+
 // connection
 const port = process.env.PORT || 9001;
 app.listen(port, () => console.log(`Listening to port ${port}`));
