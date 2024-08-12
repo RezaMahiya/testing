@@ -13,6 +13,8 @@ const date = require('date-and-time');
 */
 const home = require("./routes/home");
 const fs = require('fs');
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
 //const app = express();
