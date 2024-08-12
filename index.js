@@ -4,6 +4,7 @@ const app = express();
 const router = express.Router();
 const { google } = require("googleapis");
 const date = require('date-and-time');
+const path = require("path");
 require('dotenv').config();
 //const cors = require('cors');
 /*const corsConfig = {
@@ -19,11 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Routes
 //app.use("/home", home);
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+/*
 app.get("/", (req, res) => {
 res.sendFile('./views/index.html',{root: __dirname});
 });
-
+*/
 app.post("/", async (req, res) => {
 
   const {tester} = req.body;
@@ -65,7 +71,7 @@ app.post("/", async (req, res) => {
     },
   });
   
-  res.sendFile('./views/index.html',{root: __dirname});
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 // connection
