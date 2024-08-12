@@ -4,7 +4,6 @@ const app = express();
 const router = express.Router();
 const { google } = require("googleapis");
 const date = require('date-and-time');
-
 require('dotenv').config();
 //const cors = require('cors');
 /*const corsConfig = {
@@ -35,7 +34,7 @@ app.post("/", async (req, res) => {
      
   const credentialsEnv = process.env.GOOGLE_CREDENTIALS;
   const credentials = JSON.parse(credentialsEnv);
-  
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: credentials.client_email,
