@@ -7,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     main {
-        display: flex;
+        display: block;
         justify-content: center;
         align-items: center;
     }
@@ -24,10 +24,12 @@
 <main>
     <div id="reader"></div>
     <div id="result"></div>
+    <div id="show" style="display: none;">
     <form action="" method="post">
             <input type="hidden" name="tester" id="tester" value="default">
         <button type="submit">Konfirmasi</button>
-    </form>
+    </form>  
+    </div>
 </main>
 <script>
 
@@ -49,7 +51,8 @@
         document.getElementById('result').innerHTML = `
         <h2>Success!</h2>
         `;
-        document.getElementById('tester').value = result;        
+        document.getElementById('tester').value = result;
+        document.getElementById('show').style.display = 'block';       
         // Prints result as a link inside result element
 
         scanner.clear();
