@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulir Mahasiswa Teknik Angkatan 2024</title>
+  <script src="qrScript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #reader {
+        width: 600px;
+    }
+    #result {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+</style>
+</head>
+<body>
+<main>
+    <div id="reader"></div>
+    <div id="show" style="display: none;">
+        <h4>Scan Berhasil</h4>
+        <p id="result"></p>
+    </div>
+    <form action="" method="post">
+            <input type="hidden" name="tester" id="tester" value="default">
+        <button type="submit">Konfirmasi</button>
+    </form>
+</main>
+<script>
+    const html5Qrcode = new Html5Qrcode('reader');
+    const qrCodeSuccess = (decodedText, decodedResult)=>{
+        if (decodedText) {
+            document.getElementById('show').style.display = 'block';
+            document.getElementById('result').textcontent = decodedText;
+            document.getElementById('tester').value = decodedText;
+            html5Qrcode.stop();
+        }
+    }
+    const config = {fps:10, qrbox:{width:250, height:250}};
+    html5Qrcode.start({facingMode:"environment", config.qrCodeSuccess});
+</script>
+</body>
+</html>
